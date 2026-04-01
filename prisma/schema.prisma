@@ -1,0 +1,30 @@
+datasource db {
+  provider = "postgresql"
+  schemas  = ["auth"]
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+enum Role {
+  ADMIN
+  SUPORTE
+  FINANCEIRO
+
+  @@schema("auth")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  nome       String
+  email      String   @unique
+  senha_hash String
+  role       Role     @default(SUPORTE)
+  ativo      Boolean  @default(true)
+  created_at DateTime @default(now())
+
+  @@map("users")
+  @@schema("auth")
+}
