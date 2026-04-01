@@ -12,6 +12,8 @@ enum Role {
   ADMIN
   SUPORTE
   FINANCEIRO
+  COORDENADOR
+  MASTER
 
   @@schema("auth")
 }
